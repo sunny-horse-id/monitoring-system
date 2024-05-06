@@ -25,6 +25,13 @@ public class UserController {
     private UserService userService;
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
+
+    /**
+     * 注册
+     * @param username
+     * @param password
+     * @return
+     */
     @PostMapping("/register")
     public Result register(@Pattern(regexp = "^\\S{5,16}$") String username, @Pattern(regexp = "^\\S{5,16}$") String password) {
         log.info("注册用户名：{}，密码：{}", username, password);
@@ -42,6 +49,12 @@ public class UserController {
 
     }
 
+    /**
+     * 登录
+     * @param username
+     * @param password
+     * @return
+     */
     @PostMapping("/login")
     public Result<String> login(@Pattern(regexp = "^\\S{5,16}$") String username, @Pattern(regexp = "^\\S{5,16}$") String password) {
         log.info("登录用户名：{}，密码：{}", username, password);
