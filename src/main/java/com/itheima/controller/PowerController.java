@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@Slf4j
 @RequestMapping("/power")
 public class PowerController {
     @Autowired
@@ -20,7 +19,6 @@ public class PowerController {
      */
     @GetMapping("/perSecond")
     public Result<Double> perSecond(Double prePower) {
-        log.info("获取每秒发电功率,先前的功率为：{}", prePower);
         Double nowPower = powerService.perSecond(prePower);
         return Result.success(nowPower);
     }

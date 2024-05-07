@@ -19,7 +19,6 @@ import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping("/user")
-@Slf4j
 public class UserController {
     @Autowired
     private UserService userService;
@@ -34,7 +33,6 @@ public class UserController {
      */
     @PostMapping("/register")
     public Result register(@Pattern(regexp = "^\\S{5,16}$") String username, @Pattern(regexp = "^\\S{5,16}$") String password) {
-        log.info("注册用户名：{}，密码：{}", username, password);
         //查询用户
         User user = userService.findByUserName(username);
         if (user == null) {
@@ -57,7 +55,6 @@ public class UserController {
      */
     @PostMapping("/login")
     public Result<String> login(@Pattern(regexp = "^\\S{5,16}$") String username, @Pattern(regexp = "^\\S{5,16}$") String password) {
-        log.info("登录用户名：{}，密码：{}", username, password);
         User loginUser = userService.findByUserName(username);
         if (loginUser == null) {
             return Result.error("用户名错误");

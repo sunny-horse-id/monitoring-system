@@ -13,6 +13,7 @@ CREATE TABLE `user`
     `create_time` datetime    NOT NULL COMMENT '创建时间',
     `update_time` datetime    NOT NULL COMMENT '修改时间'
 ) COMMENT '用户表';
+INSERT INTO `user` VALUES (1, 'ziyang', 'e10adc3949ba59abbe56e057f20f883e', now(), now());
 
 -- 创建 表 monitoring_system.log 结构
 DROP TABLE IF EXISTS `log`;

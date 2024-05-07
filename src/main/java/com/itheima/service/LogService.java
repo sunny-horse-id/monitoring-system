@@ -11,4 +11,10 @@ public interface LogService {
      * @return
      */
     List<Log> list(Integer type);
+
+    /**
+     * 删除故障日志
+     * @param id
+     */
+    void delete(Integer id);
 }
