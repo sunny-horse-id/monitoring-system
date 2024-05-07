@@ -16,9 +16,9 @@ public class PowerServiceImpl implements PowerService {
     @Override
     public Double perSecond(Double prePower) {
         // 生成大小从-0.1~0.1的随机数
-        Double random = prePower + Math.random() * 0.2 - 0.1;
+        Double random = prePower + Math.random() * 0.04 - 0.02;
         while (random > MAX_POWER || random < MIN_POWER) {
-            random = prePower + Math.random() * 0.2 - 0.1;
+            random = prePower + Math.random() * 0.04 - 0.02;
         }
         return random;
     }
