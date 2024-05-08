@@ -43,8 +43,8 @@ public class DataServiceImpl implements DataService {
         res.add(voltageMap);
         res.add(electricCurrentMap);
         res.add(pressureMap);
-        res.add(concentrationMap);
         res.add(healthMap);
+        res.add(concentrationMap);
         return res;
     }
 }
