@@ -24,9 +24,9 @@ public class DataServiceImpl implements DataService {
         Map<String, Object> pressureMap = new LinkedHashMap<>();
         pressureMap.put("name", "氢气罐压力");
         Map<String, Object> concentrationMap = new LinkedHashMap<>();
-        concentrationMap.put("name", "储能侧健康度/%");
+        concentrationMap.put("name", "流体浓度梯度");
         Map<String, Object> healthMap = new LinkedHashMap<>();
-        healthMap.put("name", "流体浓度梯度");
+        healthMap.put("name", "储能侧健康度/%");
         DecimalFormat df = new DecimalFormat("#.00");
         double randomDecimal = Math.random() * 99 + 1;
         for (int i = 0; i < data.size(); i++) {
