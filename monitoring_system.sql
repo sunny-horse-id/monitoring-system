@@ -25,17 +25,6 @@ CREATE TABLE `log`
     `type`             int          NOT NULL COMMENT '故障类型 0 故障 1 事故'
 ) COMMENT '故障信息表';
 
--- 创建 表 monitoring_system.log 结构
-DROP TABLE IF EXISTS `log`;
-CREATE TABLE `log`
-(
-    `id`               int UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'ID',
-    `occurrence_time`  datetime     NOT NULL COMMENT '发生时间',
-    `occurrence_place` varchar(40)  NOT NULL COMMENT '发生位置',
-    `content`          varchar(256) NOT NULL COMMENT '故障内容',
-    `type`             int          NOT NULL COMMENT '故障类型 0 故障 1 事故'
-) COMMENT '故障信息表';
-
 # 插入管理员信息
 INSERT INTO `user` VALUES (1, 'ziyang', 'e10adc3949ba59abbe56e057f20f883e', now(), now());
 # 插入故障信息
