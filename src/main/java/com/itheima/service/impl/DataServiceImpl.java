@@ -5,6 +5,8 @@ import com.itheima.pojo.Data;
 import com.itheima.service.DataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.text.DecimalFormat;
 import java.util.*;
 
 @Service
@@ -16,15 +18,16 @@ public class DataServiceImpl implements DataService {
         List<Map<String, Object>> res = new ArrayList<>();
         List<Data> data = dataMapper.getData();
         Map<String, Object> voltageMap = new LinkedHashMap<>();
-        voltageMap.put("name", "voltage");
+        voltageMap.put("name", "发电侧电压/V");
         Map<String, Object> electricCurrentMap = new LinkedHashMap<>();
-        electricCurrentMap.put("name", "electricCurrent");
+        electricCurrentMap.put("name", "发电侧电流/A");
         Map<String, Object> pressureMap = new LinkedHashMap<>();
-        pressureMap.put("name", "pressure");
+        pressureMap.put("name", "氢气罐压力");
         Map<String, Object> concentrationMap = new LinkedHashMap<>();
-        concentrationMap.put("name", "concentration");
+        concentrationMap.put("name", "储能侧健康度/%");
         Map<String, Object> healthMap = new LinkedHashMap<>();
-        healthMap.put("name", "health");
+        healthMap.put("name", "流体浓度梯度");
+        DecimalFormat df = new DecimalFormat("#.00");
         double randomDecimal = Math.random() * 99 + 1;
         for (int i = 0; i < data.size(); i++) {
             Data d = data.get(i);
@@ -34,7 +37,8 @@ public class DataServiceImpl implements DataService {
             pressureMap.put("date_" + i, d.getPressure());
             concentrationMap.put("date_" + i, d.getConcentration());
             randomDecimal = randomDecimal - Math.random() * 0.1;
-            healthMap.put("date_" + i, Math.max(randomDecimal, 0));
+            randomDecimal = Double.parseDouble(df.format(Math.max(randomDecimal, 0)));
+            healthMap.put("date_" + i, randomDecimal);
         }
         res.add(voltageMap);
         res.add(electricCurrentMap);
