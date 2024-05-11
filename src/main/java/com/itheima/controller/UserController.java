@@ -67,7 +67,7 @@ public class UserController {
             String token = JwtUtil.genToken(claims);
             ValueOperations<String, String> operations = stringRedisTemplate.opsForValue();
             operations.set(token, token, 24, TimeUnit.HOURS);
-            return Result.success(token);
+            return Result.success(loginUser.getType().toString());
         }
         return Result.error("密码错误");
     }
