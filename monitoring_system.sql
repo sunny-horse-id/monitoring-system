@@ -11,7 +11,8 @@ CREATE TABLE `user`
     `username`    varchar(20) NOT NULL UNIQUE COMMENT '用户名',
     `password`    varchar(32) COMMENT '密码',
     `create_time` datetime    NOT NULL COMMENT '创建时间',
-    `update_time` datetime    NOT NULL COMMENT '修改时间'
+    `update_time` datetime    NOT NULL COMMENT '修改时间',
+    'type'        int         NOT NULL COMMENT '用户身份'
 ) COMMENT '用户表';
 
 -- 创建 表 monitoring_system.log 结构
@@ -27,7 +28,7 @@ CREATE TABLE `log`
 
 # 插入管理员信息
 INSERT INTO `user`
-VALUES (1, 'ziyang', 'e10adc3949ba59abbe56e057f20f883e', now(), now());
+VALUES (1, 'ziyang', 'e10adc3949ba59abbe56e057f20f883e', now(), now(), 1);
 # 插入故障信息
 INSERT INTO `log`
 VALUES (1, '2023-01-01 08:32:19', '制氢侧', '氢气压力过高', 0);
@@ -58,20 +59,18 @@ CREATE TABLE `data`
 
 # 插入正常数据
 INSERT INTO `data` (`voltage`, `electric_current`, `pressure`, `concentration`)
-SELECT
-    ROUND(RAND() * (22 - 18.01) + 18.01, 2) AS voltage,
-    ROUND(RAND() * (11 - 9.01) + 9.01, 2) AS electric_current,
-    ROUND(RAND() * (55 - 45.01) + 45.01, 2) AS pressure,
-    ROUND(RAND() * (55 - 45.01) + 45.01, 2) AS concentration
-FROM
-    information_schema.columns LIMIT 3420;
+SELECT ROUND(RAND() * (22 - 18.01) + 18.01, 2) AS voltage,
+       ROUND(RAND() * (11 - 9.01) + 9.01, 2)   AS electric_current,
+       ROUND(RAND() * (55 - 45.01) + 45.01, 2) AS pressure,
+       ROUND(RAND() * (55 - 45.01) + 45.01, 2) AS concentration
+FROM information_schema.columns
+LIMIT 3420;
 
 # 插入异常数据
 INSERT INTO `data` (`voltage`, `electric_current`, `pressure`, `concentration`)
-SELECT
-    ROUND(RAND() * (25 - 15.01) + 15.01, 2) AS voltage,
-    ROUND(RAND() * (12.5 - 7.51) + 7.51, 2) AS electric_current,
-    ROUND(RAND() * (62.5 - 37.51) + 37.51, 2) AS pressure,
-    ROUND(RAND() * (62.5 - 37.51) + 37.51, 2) AS concentration
-FROM
-    information_schema.columns LIMIT 180;
+SELECT ROUND(RAND() * (25 - 15.01) + 15.01, 2)   AS voltage,
+       ROUND(RAND() * (12.5 - 7.51) + 7.51, 2)   AS electric_current,
+       ROUND(RAND() * (62.5 - 37.51) + 37.51, 2) AS pressure,
+       ROUND(RAND() * (62.5 - 37.51) + 37.51, 2) AS concentration
+FROM information_schema.columns
+LIMIT 180;

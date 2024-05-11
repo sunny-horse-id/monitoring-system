@@ -21,4 +21,5 @@ public class User {
     private String password;//密码
     private LocalDateTime createTime;//创建时间
     private LocalDateTime updateTime;//更新时间
+    private Integer type; // 用户身份
 }
